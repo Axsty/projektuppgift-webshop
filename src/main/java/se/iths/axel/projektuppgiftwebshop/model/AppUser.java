@@ -14,7 +14,7 @@ public class AppUser {
 
     private String username;
     private String password;
-    private boolean concent;
+    private boolean consent;
     private String role;
 
     public AppUser() {
@@ -44,12 +44,12 @@ public class AppUser {
         this.password = password;
     }
 
-    public boolean getConcent() {
-        return concent;
+    public boolean getConsent() {
+        return consent;
     }
 
-    public void setConcent(boolean concent) {
-        this.concent = concent;
+    public void setConsent(boolean consent) {
+        this.consent = consent;
     }
 
     public String getRole() {

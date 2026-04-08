@@ -18,6 +18,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;
 
     public Order() {
