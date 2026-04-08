@@ -14,7 +14,7 @@ public class AppUser {
 
     private String username;
     private String password;
-    private Boolean concent;
+    private boolean concent;
     private String role;
 
     public AppUser() {
@@ -44,11 +44,11 @@ public class AppUser {
         this.password = password;
     }
 
-    public Boolean getConcent() {
+    public boolean getConcent() {
         return concent;
     }
 
-    public void setConcent(Boolean concent) {
+    public void setConcent(boolean concent) {
         this.concent = concent;
     }
 
