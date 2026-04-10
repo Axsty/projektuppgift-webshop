@@ -91,7 +91,20 @@
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>se.iths.sofia</groupId>
+            <artifactId>webshop-mail-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/SofiaTekle/webshop-mail-service</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
