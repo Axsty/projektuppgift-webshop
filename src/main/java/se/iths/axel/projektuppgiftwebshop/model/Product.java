@@ -12,10 +12,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name;
     private double price;
     private String category;
-    private String bildUrl;
+    private String imageUrl;
 
     public Product() {
     }
@@ -28,12 +28,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
@@ -52,11 +52,11 @@ public class Product {
         this.category = category;
     }
 
-    public String getBildUrl() {
-        return bildUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setBildUrl(String bildUrl) {
-        this.bildUrl = bildUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
