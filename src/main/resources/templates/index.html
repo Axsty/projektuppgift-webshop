@@ -6,10 +6,12 @@
 </head>
 <body>
 
-<h3>WEBSHOP</h3>
+<div th:replace="fragments/header :: header"></div>
 
 <a class="button" th:href="@{/login}">Login</a>
 <a class="button" th:href="@{/register}">Sign up</a>
+
+<div th:replace="fragments/footer :: footer"></div>
 
 </body>
 </html>
