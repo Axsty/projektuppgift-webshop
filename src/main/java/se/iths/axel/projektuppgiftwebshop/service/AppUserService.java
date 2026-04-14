@@ -1,6 +1,6 @@
 package se.iths.axel.projektuppgiftwebshop.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.axel.projektuppgiftwebshop.model.AppUser;
 import se.iths.axel.projektuppgiftwebshop.repository.AppUserRepository;
@@ -12,10 +12,11 @@ public class AppUserService {
     private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 
     // Använder här tills vi har en Bean i SecurityConfig
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encoder;
 
-    public AppUserService(AppUserRepository repository) {
+    public AppUserService(AppUserRepository repository, PasswordEncoder encoder) {
         this.repository = repository;
+        this.encoder = encoder;
     }
 
     public AppUser registerNewAppUser(AppUser appUser) {
@@ -30,11 +31,13 @@ public class AppUserService {
         }
 
         String encodedPassword = encoder.encode(appUser.getPassword());
+        boolean consent = appUser.getConsent();
 
         AppUser newAppUser = new AppUser();
         newAppUser.setUsername(username);
         newAppUser.setPassword(encodedPassword);
         newAppUser.setRole("USER");
+        newAppUser.setConsent(consent);
 
         return repository.save(newAppUser);
     }
