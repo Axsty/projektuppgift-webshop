@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kundvagn</title>
+</head>
+<body>
+<h1>Kundvagn</h1>
+
+<p th:if="${#lists.isEmpty(items)}">
+    Kundvagnen är tom
+</p>
+
+<table border="1">
+    <tr>
+        <th>Produkt</th>
+        <th>Antal</th>
+        <th>Pris</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.productName}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.price * item.quantity}"></td>
+    </tr>
+</table>
+
+<h3>Total: <span th:text="${total}"></span> kr</h3>
+
+<br>
+
+<a th:href="@{/products}">Fortsätt handla</a>
+
+<form action="/checkout" method="post">
+    <button type="submit">Checkout</button>
+</form>
+</body>
+</html>
