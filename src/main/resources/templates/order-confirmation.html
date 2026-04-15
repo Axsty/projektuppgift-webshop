@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+</head>
+<body>
+
+<h3 th:text="${appUser.username}"></h3>
+<h3 th:text="${orderPlaced}"></h3>
+
+<div th:each="item : ${cart.items}">
+    <h3 th:text="${item.productName}"></h3>
+    <h3 th:text="${item.price} + ' kr'"></h3>
+</div>
+
+<h3 th:text="${cart.totalPrice} + ' kr'"></h3>
+
+</body>
+</html>
