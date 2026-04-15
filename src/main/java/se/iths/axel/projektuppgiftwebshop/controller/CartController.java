@@ -1,10 +1,10 @@
 package se.iths.axel.projektuppgiftwebshop.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import se.iths.axel.projektuppgiftwebshop.model.AppUser;
 import se.iths.axel.projektuppgiftwebshop.model.Cart;
 import se.iths.axel.projektuppgiftwebshop.model.Product;
 import se.iths.axel.projektuppgiftwebshop.repository.ProductRepository;
@@ -46,9 +46,9 @@ public class CartController {
     }
 
     @PostMapping("/checkout")
-    public String checkout(@ModelAttribute("cart") Cart cart, @AuthenticationPrincipal AppUser appUser) {
+    public String checkout(@ModelAttribute("cart") Cart cart, @AuthenticationPrincipal UserDetails userDetails) {
 
-        orderService.sendOrderConfirmation(cart, appUser);
+        orderService.sendOrderConfirmation(cart, userDetails);
 
         return "redirect:/orderconfirmation";
     }

@@ -11,7 +11,6 @@ public class AppUserService {
     private final AppUserRepository repository;
     private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 
-    // Använder här tills vi har en Bean i SecurityConfig
     private final PasswordEncoder encoder;
 
     public AppUserService(AppUserRepository repository, PasswordEncoder encoder) {
