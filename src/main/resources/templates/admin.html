@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Admin - Skapa produkt</h1>
+
+<br>
+
+<div th:if="${param.success}"
+     style="color: green; font-weight: bold; padding: 10px; background-color: #e8f5e9; border-radius: 4px; margin-bottom: 10px;">
+    Produkten har lagts till!
+</div>
+
+<form method="post" th:action="@{/products}" th:object="${product}">
+    <input type="text" th:field="*{name}" placeholder="Namn"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+    <input type="number" th:field="*{price}" placeholder="Pris" step="0.01"/>
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+
+    <input type="text" th:field="*{category}" placeholder="Kategori"/>
+    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+
+    <input type="text" th:field="*{imageUrl}" placeholder="Bild-url"/>
+    <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></span>
+
+    <button type="submit">Skapa produkt</button>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

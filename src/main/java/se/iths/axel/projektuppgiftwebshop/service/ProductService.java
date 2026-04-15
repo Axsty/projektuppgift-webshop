@@ -17,9 +17,14 @@ public class ProductService {
 
     public List<Product> getProducts(String category) {
         if (category != null && !category.isEmpty()) {
-            return productRepository.findByCategory(category);
+            return productRepository.findByCategoryIgnoreCase(category);
         }
 
-        return productRepository.findAll();
+        return productRepository.findAllByOrderByCategoryAsc();
     }
+
+    public void save(Product product) {
+        productRepository.save(product);
+    }
+
 }
