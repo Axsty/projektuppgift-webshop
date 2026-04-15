@@ -1,7 +1,7 @@
 package se.iths.axel.projektuppgiftwebshop.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import se.iths.axel.projektuppgiftwebshop.model.AppUser;
 import se.iths.axel.projektuppgiftwebshop.model.Cart;
 import se.iths.axel.projektuppgiftwebshop.model.OrderItem;
 import se.iths.sofia.webshopmailservice.MailService;
@@ -17,8 +17,8 @@ public class OrderService {
         this.service = service;
     }
 
-    public void sendOrderConfirmation(Cart cart, AppUser appUser) {
-        String username = appUser.getUsername();
+    public void sendOrderConfirmation(Cart cart, UserDetails userDetails) {
+        String username = userDetails.getUsername();
 
         String orderDetails = "Datum: " + LocalDateTime.now() + "\n" + "Produkter: ";
 
