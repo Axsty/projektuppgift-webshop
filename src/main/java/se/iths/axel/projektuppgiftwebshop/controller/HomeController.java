@@ -12,4 +12,14 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/privacy")
+    public String privacy() {
+        return "privacy";
+    }
+
+    @GetMapping("/cookies")
+    public String cookies() {
+        return "cookies";
+    }
 }
