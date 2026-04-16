@@ -8,7 +8,9 @@
 <div th:replace="fragments/header :: header"></div>
 <h1>Kundvagn</h1>
 
-<p th:if="${#lists.isEmpty(items)}">
+<p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></p>
+
+<p th:if="${#lists.isEmpty(items) and errorMessage == null}">
     Kundvagnen är tom
 </p>
 
