@@ -1,10 +1,18 @@
-<header th:fragment="header">
+<header th:fragment="header"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
     <h3>WEBSHOP</h3>
 
-    <a th:href="@{/}">Start</a>
-    <a th:href="@{/products}">Produkter</a>
-    <a th:href="@{/cart}">Kundvagn</a>
-    <a th:href="@{/profile}">Profil</a>
+    <nav>
+        <a th:href="@{/products}">Produkter</a>
+        <a th:href="@{/cart}">Kundvagn</a>
+        <a th:href="@{/profile}">Min profil</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+
+        <form method="post" th:action="@{/logout}" style="display:inline">
+            <button type="submit">Logga ut</button>
+        </form>
+    </nav>
 
     <hr>
 </header>

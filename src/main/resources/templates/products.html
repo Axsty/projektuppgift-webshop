@@ -5,7 +5,7 @@
     <title>Produkter</title>
 </head>
 <body>
-
+<div th:replace="fragments/header :: header"></div>
 <h1>Produkter</h1>
 <div>
     <a th:href="@{/products}">Alla</a>
@@ -39,5 +39,6 @@
 
 <a th:href="@{/cart}">Gå till kundvagn</a>
 
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
