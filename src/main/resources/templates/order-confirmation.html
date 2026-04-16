@@ -5,6 +5,7 @@
     <title>Order Confirmation</title>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 
 <h3 th:text="${userDetails.username}"></h3>
 <h3 th:text="${orderPlaced}"></h3>
@@ -16,5 +17,6 @@
 
 <h3 th:text="${cart.totalPrice} + ' kr'"></h3>
 
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
