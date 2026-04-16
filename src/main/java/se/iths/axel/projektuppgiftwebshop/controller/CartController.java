@@ -5,7 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.iths.axel.projektuppgiftwebshop.model.Cart;
+import se.iths.axel.projektuppgiftwebshop.model.Order;
 import se.iths.axel.projektuppgiftwebshop.model.Product;
 import se.iths.axel.projektuppgiftwebshop.repository.ProductRepository;
 import se.iths.axel.projektuppgiftwebshop.service.OrderService;
@@ -46,11 +48,13 @@ public class CartController {
     }
 
     @PostMapping("/checkout")
-    public String checkout(@ModelAttribute("cart") Cart cart, @AuthenticationPrincipal UserDetails userDetails) {
+    public String checkout(@ModelAttribute("cart") Cart cart,
+                           @AuthenticationPrincipal UserDetails userDetails,
+                           RedirectAttributes redirectAttributes) {
 
-        orderService.sendOrderConfirmation(cart, userDetails);
+        Order order = orderService.placeOrder(cart, userDetails);
+        redirectAttributes.addFlashAttribute("order", order);
 
         return "redirect:/orderconfirmation";
     }
-
 }

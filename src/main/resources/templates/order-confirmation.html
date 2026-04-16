@@ -7,15 +7,14 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 
-<h3 th:text="${userDetails.username}"></h3>
-<h3 th:text="${orderPlaced}"></h3>
+<h3 th:text="'Hej ' + ${userDetails.username} + '!'"></h3>
+<h3 th:text="'Datum: ' + ${order.orderDate}"></h3>
 
-<div th:each="item : ${cart.items}">
-    <h3 th:text="${item.productName}"></h3>
-    <h3 th:text="${item.price} + ' kr'"></h3>
+<div th:each="item : ${order.orderItems}">
+    <h3 th:text="'Produkter: ' + ${item.productName} + ' ' + 'x' + ${item.quantity} + ' ' + ${item.price} + 'kr'"></h3>
 </div>
 
-<h3 th:text="${cart.totalPrice} + ' kr'"></h3>
+<h3 th:text="'Total belopp: ' + ${order.price} + 'kr'"></h3>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>
