@@ -52,9 +52,14 @@ public class CartController {
                            @AuthenticationPrincipal UserDetails userDetails,
                            RedirectAttributes redirectAttributes) {
 
-        Order order = orderService.placeOrder(cart, userDetails);
-        redirectAttributes.addFlashAttribute("order", order);
+        try {
+            Order order = orderService.placeOrder(cart, userDetails);
+            redirectAttributes.addFlashAttribute("order", order);
+            return "redirect:/orderconfirmation";
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/cart";
+        }
 
-        return "redirect:/orderconfirmation";
     }
 }

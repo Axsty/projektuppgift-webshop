@@ -23,6 +23,11 @@ public class OrderService {
     }
 
     public Order placeOrder(Cart cart, UserDetails userDetails) {
+
+        if (cart == null || cart.isEmpty()) {
+            throw new IllegalArgumentException("Kundvagnen är tom");
+        }
+
         String username = userDetails.getUsername();
 
         String orderDetails = "Datum: " + LocalDateTime.now() + "\n" + "Produkter: ";
