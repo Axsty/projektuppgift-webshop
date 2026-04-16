@@ -5,22 +5,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import se.iths.axel.projektuppgiftwebshop.model.Cart;
-
-import java.time.LocalDateTime;
+import se.iths.axel.projektuppgiftwebshop.model.Order;
 
 @Controller
 @RequestMapping("/orderconfirmation")
 public class OrderConfirmationController {
 
     @GetMapping
-    public String orderConfirmation(@AuthenticationPrincipal UserDetails userDetails, @SessionAttribute("cart") Cart cart, Model model) {
-        LocalDateTime orderPlaced = LocalDateTime.now();
+    public String orderConfirmation(@AuthenticationPrincipal UserDetails userDetails,
+                                    @ModelAttribute Order order,
+                                    Model model) {
 
-        model.addAttribute("orderPlaced", orderPlaced);
-        model.addAttribute("cart", cart);
+        model.addAttribute("orderDate", order.getOrderDate());
+        model.addAttribute("order", order);
         model.addAttribute("userDetails", userDetails);
 
         return "order-confirmation";
