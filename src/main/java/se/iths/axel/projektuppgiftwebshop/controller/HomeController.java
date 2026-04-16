@@ -22,4 +22,9 @@ public class HomeController {
     public String cookies() {
         return "cookies";
     }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
 }
