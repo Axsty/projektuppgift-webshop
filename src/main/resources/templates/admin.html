@@ -25,7 +25,12 @@
     <input type="number" th:field="*{price}" placeholder="Pris" step="0.01"/>
     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
 
-    <input type="text" th:field="*{category}" placeholder="Kategori"/>
+    <select th:field="*{category}">
+        <option value="">Kategori</option>
+        <option value="Elektronik">Elektronik</option>
+        <option value="Kläder">Kläder</option>
+        <option value="Hem">Hem</option>
+    </select>
     <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
 
     <input type="text" th:field="*{imageUrl}" placeholder="Bild-url"/>
