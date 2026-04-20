@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.axel.projektuppgiftwebshop.model.AppUser;
 import se.iths.axel.projektuppgiftwebshop.repository.AppUserRepository;
+import se.iths.sofia.webshopmailservice.MailService;
 
 @Service
 public class AppUserService {
@@ -13,9 +14,12 @@ public class AppUserService {
 
     private final PasswordEncoder encoder;
 
-    public AppUserService(AppUserRepository repository, PasswordEncoder encoder) {
+    private final MailService mailService;
+
+    public AppUserService(AppUserRepository repository, PasswordEncoder encoder, MailService mailService) {
         this.repository = repository;
         this.encoder = encoder;
+        this.mailService = mailService;
     }
 
     public AppUser registerNewAppUser(AppUser appUser) {
@@ -40,4 +44,33 @@ public class AppUserService {
 
         return repository.save(newAppUser);
     }
+
+    public AppUser findByUsername(String username) {
+        AppUser user = repository.findAppUsersByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+        return user;
+    }
+
+    public void sendUserInfoByEmail(String username) {
+        AppUser user = findByUsername(username);
+
+        String subject = "Dina användaruppgifter";
+
+        String body = "Här är dina uppgifter:\n\n" +
+                "E-post: " + user.getUsername() + "\n" +
+                "Roll: " + user.getRole() + "\n" +
+                "Samtycke: " + user.getConsent();
+
+        mailService.sendOrderConfirmationMail(user.getUsername(), subject, body);
+    }
+
+    public void deleteUserByUsername(String username) {
+        AppUser user = findByUsername(username);
+        repository.delete(user);
+    }
 }
+
