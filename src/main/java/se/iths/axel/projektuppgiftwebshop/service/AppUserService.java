@@ -58,14 +58,12 @@ public class AppUserService {
     public void sendUserInfoByEmail(String username) {
         AppUser user = findByUsername(username);
 
-        String subject = "Dina användaruppgifter";
-
         String body = "Här är dina uppgifter:\n\n" +
                 "E-post: " + user.getUsername() + "\n" +
                 "Roll: " + user.getRole() + "\n" +
                 "Samtycke: " + user.getConsent();
 
-        mailService.sendOrderConfirmationMail(user.getUsername(), subject, body);
+        mailService.sendUserDataMail(user.getUsername(), body);
     }
 
     public void deleteUserByUsername(String username) {

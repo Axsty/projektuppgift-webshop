@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class AppUser {
@@ -12,8 +15,14 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Email får inte vara tomt")
+    @Email(message = "Måste vara en giltig email")
     private String username;
+
+    @NotBlank(message = "Lösenord får inte vara tomt")
+    @Size(min = 6, message = "Lösenord måste vara minst 6 tecken")
     private String password;
+
     private boolean consent;
     private String role;
 

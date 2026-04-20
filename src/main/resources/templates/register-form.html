@@ -14,13 +14,16 @@
 
 <h3>Register new user</h3>
 
-<form th:action="@{/register}" method="post">
 
-    <label for="username"></label>
+<form th:action="@{/register}" th:object="${appUser}" method="post">
+
+    <label for="username">Username</label>
     <input type="text" id="username" name="username" placeholder="Username" required>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 
-    <label for="password"></label>
+    <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
     <label for="consent"></label>
     <a th:href="@{/privacy}">Integritetspolicy</a>
