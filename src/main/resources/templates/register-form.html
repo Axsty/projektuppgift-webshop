@@ -22,9 +22,8 @@
     <label for="password"></label>
     <input type="password" id="password" name="password" placeholder="Password" required>
 
-    <!-- TODO: Länk till länk för integritets-sida. -->
     <label for="consent"></label>
-    <a>Terms and conditions</a>
+    <a th:href="@{/privacy}">Integritetspolicy</a>
     <input type="checkbox" id="consent" name="consent">
 
     <br/>
