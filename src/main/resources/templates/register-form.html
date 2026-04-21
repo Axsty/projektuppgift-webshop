@@ -14,23 +14,27 @@
 
 <h3>Register new user</h3>
 
-<form th:action="@{/register}" method="post">
 
-    <label for="username"></label>
+<form th:action="@{/register}" th:object="${appUser}" method="post">
+
+    <label for="username">Username</label>
     <input type="text" id="username" name="username" placeholder="Username" required>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 
-    <label for="password"></label>
+    <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
-    <!-- TODO: Länk till länk för integritets-sida. -->
     <label for="consent"></label>
-    <a>Terms and conditions</a>
-    <input type="checkbox" id="consent" name="consent">
+    <a th:href="@{/privacy}">Integritetspolicy</a>
+    <input type="checkbox" id="consent" name="consent" required>
 
     <br/>
 
     <button type="submit">REGISTER</button>
 
 </form>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>
