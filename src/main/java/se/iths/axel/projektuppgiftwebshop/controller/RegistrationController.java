@@ -1,6 +1,9 @@
 package se.iths.axel.projektuppgiftwebshop.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +22,19 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public String showRegisterForm() {
+    public String showRegisterForm(Model model) {
+        model.addAttribute("appUser", new AppUser());
         return "register-form";
     }
 
     @PostMapping
-    public String registerNewAppUser(@ModelAttribute AppUser appUser) {
+    public String registerNewAppUser(@Valid @ModelAttribute AppUser appUser,
+                                     BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "register-form";
+        }
+
         service.registerNewAppUser(appUser);
         return "redirect:/";
     }
