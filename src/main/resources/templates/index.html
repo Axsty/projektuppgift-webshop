@@ -17,6 +17,44 @@
     <a class="button" th:href="@{/register}">Sign up</a>
 </main>
 
+<div id="cookie-banner" style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #333;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    ">
+    Denna webbplats använder cookies. Läs mer i vår
+    <a th:href="@{/cookies}" style="color: #4da6ff; text-decoration: underline;">
+        cookiepolicy
+    </a>
+
+    <button onclick="acceptCookies()" style="margin-left: 10px;">
+        OK
+    </button>
+</div>
+
+<script>
+    function acceptCookies() {
+        document.cookie = "cookiesAccepted=true; path=/; max-age=" + (60 * 60 * 24 * 365);
+        document.getElementById("cookie-banner").style.display = "none";
+    }
+
+    function getCookie(name) {
+        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : null;
+    }
+
+    window.onload = function () {
+        if (getCookie("cookiesAccepted") === "true") {
+            document.getElementById("cookie-banner").style.display = "none";
+        }
+    }
+</script>
+
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>
