@@ -45,8 +45,8 @@ public class SecurityConfig {
                                 "/login",
                                 "/login/ott",
                                 "/ott/sent",
-                                "/cookie-policy",
-                                "/privacy-policy",
+                                "/cookies",
+                                "/privacy",
                                 "/css/**",
                                 "/js/**"
                         ).permitAll()
